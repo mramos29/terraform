@@ -3,6 +3,6 @@ output "Server Name" {
 }
 
 output "Public ip" {
-  value = "${scaleway_server.scaleway01.public_ip}"
+  value = "${scaleway_ip.ip.ip}"
 }
 
