@@ -4,6 +4,11 @@ provider "scaleway" {
   region       = "par1"
 }
 
+provider "cloudflare" {
+  email = "${var.cloudflare_email}"
+  token = "${var.cloudflare_token}"
+}
+
 resource "scaleway_ip" "scaleway01" {
   server = "${scaleway_server.scaleway01.id}"
 }
@@ -48,4 +53,12 @@ resource "scaleway_security_group_rule" "https_accept" {
   ip_range  = "0.0.0.0/0"
   protocol  = "TCP"
   port      = 443
+}
+
+resource "cloudflare_record" "scaleway01" {
+  domain = "${var.cloudflare_domain}"
+  name   = "scaleway01"
+  value  = "${scaleway_ip.scaleway01.ip}"
+  type   = "A"
+  ttl    = 300
 }
