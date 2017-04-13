@@ -4,8 +4,7 @@ provider "scaleway" {
   region       = "par1"
 }
 
-
-resource "scaleway_ip" "ip" {
+resource "scaleway_ip" "scaleway01" {
   server = "${scaleway_server.scaleway01.id}"
 }
 
